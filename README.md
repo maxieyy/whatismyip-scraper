@@ -11,7 +11,7 @@
 
 ```bash
 curl https://your-domain.vercel.app/api/lookup?ip=8.8.8.8
-
+```
 
 📊 Why Choose This API?
 Feature	Our API	Competitors
@@ -291,7 +291,7 @@ Hosted on: Vercel
 📞 Contact & Support
 For credit requests or content removal:
 
-📧 Email: dmca@yourdomain.com
+📧 Email: maxwellirungu64@gmail.com
 
 🐙 GitHub Issues: Open an issue
 
