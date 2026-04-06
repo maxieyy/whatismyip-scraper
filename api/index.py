@@ -4,9 +4,18 @@ import json
 import re
 from datetime import datetime
 from flask import Flask, request, jsonify
-import os
 
 app = Flask(__name__)
+
+# Developer information
+DEVELOPER = {
+    "name": "Maxwell",
+    "github": "https://github.com/maxieyy",
+    "username": "maxieyy",
+    "project": "IP Intelligence API",
+    "license": "MIT",
+    "purpose": "Educational use only"
+}
 
 def clean_coordinate(coord_str):
     """Extract just the numeric value from coordinate strings"""
@@ -16,9 +25,7 @@ def clean_coordinate(coord_str):
     return float(match.group(1)) if match else None
 
 def get_whatismyip_data(ip_address):
-    """
-    Get clean, organized JSON from whatismyipaddress.com
-    """
+    """Get clean, organized JSON from whatismyipaddress.com"""
     session = requests.Session(impersonate="chrome120")
     
     headers = {
@@ -66,9 +73,10 @@ def get_whatismyip_data(ip_address):
                     'date': date
                 })
         
-        # Create clean, organized JSON
+        # Create clean JSON with developer credits
         clean_data = {
             "success": True,
+            "developer": DEVELOPER,
             "query": {
                 "ip": ip_address,
                 "timestamp": datetime.now().isoformat(),
@@ -90,7 +98,7 @@ def get_whatismyip_data(ip_address):
                     }
                 }
             },
-            "user_comments": comments[:10],  # Limit to 10 comments
+            "user_comments": comments[:10],
             "metadata": {
                 "is_vpn": "VPN" in raw_data.get("Services", ""),
                 "has_comments": len(comments) > 0,
@@ -101,7 +109,7 @@ def get_whatismyip_data(ip_address):
         return clean_data
         
     except Exception as e:
-        return {'success': False, 'error': str(e)}
+        return {'success': False, 'error': str(e), 'developer': DEVELOPER}
 
 @app.route('/api/lookup', methods=['GET'])
 def lookup_ip():
@@ -111,15 +119,17 @@ def lookup_ip():
     if not ip:
         return jsonify({
             'success': False,
+            'developer': DEVELOPER,
             'error': 'Missing ip parameter',
             'usage': '/api/lookup?ip=8.8.8.8'
         }), 400
     
-    # Validate IP format (simple validation)
+    # Validate IP format
     ip_pattern = re.compile(r'^(\d{1,3}\.){3}\d{1,3}$')
     if not ip_pattern.match(ip):
         return jsonify({
             'success': False,
+            'developer': DEVELOPER,
             'error': 'Invalid IP address format'
         }), 400
     
@@ -138,6 +148,7 @@ def lookup_batch():
     if not data or 'ips' not in data:
         return jsonify({
             'success': False,
+            'developer': DEVELOPER,
             'error': 'Missing ips array in request body',
             'usage': 'POST /api/lookup/batch with {"ips": ["8.8.8.8", "1.1.1.1"]}'
         }), 400
@@ -147,12 +158,14 @@ def lookup_batch():
     if not isinstance(ips, list):
         return jsonify({
             'success': False,
+            'developer': DEVELOPER,
             'error': 'ips must be an array'
         }), 400
     
     if len(ips) > 10:
         return jsonify({
             'success': False,
+            'developer': DEVELOPER,
             'error': 'Maximum 10 IPs per batch request'
         }), 400
     
@@ -163,6 +176,7 @@ def lookup_batch():
     
     return jsonify({
         'success': True,
+        'developer': DEVELOPER,
         'total': len(results),
         'timestamp': datetime.now().isoformat(),
         'results': results
@@ -173,11 +187,30 @@ def health_check():
     """Health check endpoint"""
     return jsonify({
         'status': 'healthy',
+        'developer': DEVELOPER,
         'timestamp': datetime.now().isoformat(),
-        'service': 'IP Lookup API'
+        'service': 'IP Intelligence API',
+        'github': 'https://github.com/maxieyy'
     })
 
+@app.route('/', methods=['GET'])
+def home():
+    """Home endpoint with API info"""
+    return jsonify({
+        'name': 'IP Intelligence API',
+        'version': '1.0.0',
+        'developer': DEVELOPER,
+        'endpoints': {
+            'single_lookup': '/api/lookup?ip={ip_address}',
+            'batch_lookup': '/api/lookup/batch (POST)',
+            'health': '/api/health'
+        },
+        'documentation': 'https://github.com/maxieyy/ip-lookup-api',
+        'purpose': 'Educational use only',
+        'credit_removal': 'Contact maxieyy on GitHub for credit/removal requests'
+    })
 
+# Vercel requires this
 app = app
 
 if __name__ == '__main__':
