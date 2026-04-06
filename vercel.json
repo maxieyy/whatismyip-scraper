@@ -1,7 +1,9 @@
 {
   "functions": {
     "api/index.py": {
-      "runtime": "@vercel/python@3.9"
+      "runtime": "python3.9",
+      "includeFiles": "**/*.py",
+      "excludeFiles": ""
     }
   },
   "routes": [
@@ -19,27 +21,8 @@
       "dest": "/api/index.py"
     },
     {
-      "src": "/",
+      "src": "/(.*)",
       "dest": "/api/index.py"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type"
-        }
-      ]
     }
   ]
 }
