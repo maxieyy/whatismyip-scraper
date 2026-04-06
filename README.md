@@ -1,349 +1,300 @@
-# 🌐 IP Intelligence API - Advanced IP Geolocation & Threat Detection
+# 🌍 Free IP Geolocation API (No API Key) — Open Source
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/ip-lookup-api)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Vercel Ready](https://img.shields.io/badge/Vercel-Ready-black.svg)](https://vercel.com)
+**Free IP geolocation API with VPN detection, ASN lookup, ISP intelligence, and batch IP analysis.**
 
-> **Enterprise-grade IP intelligence API** | Real-time geolocation | VPN/Proxy detection | ISP Intelligence | 99.9% Uptime
-
-## 🚀 Live Demo
+Convert any IP address into structured intelligence instantly — no authentication required.
 
 ```bash
 curl https://your-domain.vercel.app/api/lookup?ip=8.8.8.8
+```
 
+Returns:
 
-📊 Why Choose This API?
-Feature	Our API	Competitors
-Free Tier	✅ Unlimited	❌ Limited
-VPN Detection	✅ Yes	❌ Premium
-Batch Lookup	✅ Up to 10 IPs	❌ Paid
-Response Time	⚡ <500ms	🐌 1-2s
-No API Key	✅ Yes	❌ Required
-Open Source	✅ MIT	❌ Proprietary
-🎯 Perfect For
-Cybersecurity Companies - Detect VPNs, proxies, and malicious IPs
+* country
+* region
+* city
+* coordinates
+* ISP provider
+* ASN number
+* hostname
+* VPN / proxy detection
+* infrastructure metadata
 
-E-commerce Platforms - Geolocate customers, prevent fraud
+---
 
-AdTech & Programmatic - Target ads by location, detect data centers
+# 🚀 Quick Start
 
-Content Delivery Networks - Route traffic based on geography
+### Single Lookup
 
-Game Developers - Region locking, latency optimization
+```bash
+curl https://your-domain.vercel.app/api/lookup?ip=8.8.8.8
+```
 
-Analytics Platforms - Enrich visitor data with IP intelligence
+### Batch Lookup
 
-# ✨ Premium Features (100% Free)
-🔍 Single IP Lookup
-http
-GET /api/lookup?ip={ip_address}
-📦 Batch IP Intelligence
-http
-POST /api/lookup/batch
-Content-Type: application/json
+```bash
+curl -X POST https://your-domain.vercel.app/api/lookup/batch \
+  -H "Content-Type: application/json" \
+  -d '{"ips": ["8.8.8.8","1.1.1.1"]}'
+```
 
+---
+
+# 📡 API Endpoints
+
+## GET /api/lookup
+
+Lookup a single IP address.
+
+Example:
+
+```http
+GET /api/lookup?ip=8.8.8.8
+```
+
+---
+
+## POST /api/lookup/batch
+
+Lookup multiple IP addresses.
+
+```json
 {
-  "ips": ["8.8.8.8", "1.1.1.1", "169.150.196.119"]
+  "ips": ["8.8.8.8","1.1.1.1"]
 }
-🏥 Health Monitoring
-http
+```
+
+---
+
+## GET /api/health
+
+Health status endpoint.
+
+```http
 GET /api/health
-📈 Response Schema
-json
+```
+
+---
+
+# 🌍 Example Response
+
+```json
 {
   "success": true,
   "query": {
-    "ip": "169.150.196.119",
-    "timestamp": "2026-04-07T12:34:56.789Z",
-    "source": "whatismyipaddress.com"
+    "ip": "8.8.8.8"
   },
   "ip_details": {
-    "decimal": "2845230199",
-    "hostname": "unn-169-150-196-119.datapacket.com",
-    "asn": "212238",
-    "isp": "DataCamp Limited",
-    "services": ["VPN Server"],
+    "isp": "Google LLC",
+    "asn": "AS15169",
+    "hostname": "dns.google",
     "location": {
-      "country": "Netherlands (Kingdom of the)",
-      "state_region": "Noord-Holland",
-      "city": "Amsterdam",
+      "country": "United States",
+      "city": "Mountain View",
       "coordinates": {
-        "latitude": 52.3785,
-        "longitude": 4.9000
+        "latitude": 37.4056,
+        "longitude": -122.0775
       }
     }
   },
-  "user_comments": [
-    {
-      "text": "its just a proton vpn ip adress- it aint that serious",
-      "date": "2025-07-04"
-    }
-  ],
   "metadata": {
-    "is_vpn": true,
-    "has_comments": true,
-    "comment_count": 2
+    "is_vpn": false
   }
 }
-🛠️ Quick Start
-Deployment (5 minutes)
-https://vercel.com/button
+```
 
-Click the Deploy button above
+---
 
-Connect your GitHub account
+# ✨ Features
 
-Your API is live!
+| Feature                 | Supported |
+| ----------------------- | --------- |
+| Free IP geolocation API | ✅         |
+| VPN detection API       | ✅         |
+| ASN lookup API          | ✅         |
+| ISP intelligence        | ✅         |
+| Reverse hostname lookup | ✅         |
+| Batch lookup            | ✅         |
+| No API key required     | ✅         |
+| Open source             | ✅         |
 
-Local Development
-bash
-# Clone the repository
+---
+
+# ⚡ Performance
+
+| Metric              | Value     |
+| ------------------- | --------- |
+| Response time       | <500ms    |
+| Batch size          | 10 IPs    |
+| Requests/minute     | 45        |
+| Concurrent requests | Unlimited |
+| Uptime              | 99.9%     |
+
+---
+
+# 🧠 Use Cases
+
+### Fraud Detection
+
+```python
+if ip_data["metadata"]["is_vpn"]:
+    block_request()
+```
+
+### Geo Targeting
+
+```python
+if country == "United States":
+    show_us_content()
+```
+
+### Analytics Enrichment
+
+```python
+log["isp"] = ip_data["ip_details"]["isp"]
+```
+
+---
+
+# 🌎 Global Coverage
+
+Supports IP intelligence across:
+
+* North America
+* Europe
+* Asia Pacific
+* Latin America
+* Africa
+* Middle East
+
+---
+
+# 🔐 Privacy Friendly
+
+This API:
+
+* does NOT store lookups
+* does NOT track users
+* requires NO authentication
+* uses HTTPS only
+* supports GDPR-friendly workflows
+
+---
+
+# 🛠 Local Development
+
+```bash
 git clone https://github.com/yourusername/ip-lookup-api.git
 cd ip-lookup-api
 
-# Setup virtual environment
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate
 
-# Install dependencies
 pip install -r requirements.txt
-
-# Run the server
 python api/lookup.py
-💻 Integration Examples
-Python
-python
-import requests
+```
 
-# Single IP lookup
-response = requests.get('https://api.yourdomain.com/lookup?ip=8.8.8.8')
-data = response.json()
+---
 
-# Batch lookup
-response = requests.post(
-    'https://api.yourdomain.com/lookup/batch',
-    json={'ips': ['8.8.8.8', '1.1.1.1']}
-)
+# 📚 Parameters
 
-print(f"ISP: {data['ip_details']['isp']}")
-print(f"VPN: {data['metadata']['is_vpn']}")
-JavaScript/Node.js
-javascript
-// Single IP
-const response = await fetch('https://api.yourdomain.com/lookup?ip=8.8.8.8');
-const data = await response.json();
+| Parameter | Type   | Required |
+| --------- | ------ | -------- |
+| ip        | string | Yes      |
 
-// Batch lookup
-const batchResponse = await fetch('https://api.yourdomain.com/lookup/batch', {
-  method: 'POST',
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify({ips: ['8.8.8.8', '1.1.1.1']})
-});
+---
 
-console.log(`Location: ${data.ip_details.location.city}, ${data.ip_details.location.country}`);
-PHP
-php
-$ip = '8.8.8.8';
-$data = file_get_contents("https://api.yourdomain.com/lookup?ip={$ip}");
-$result = json_decode($data, true);
+# ❗ Error Codes
 
-echo "ISP: " . $result['ip_details']['isp'];
-echo "VPN: " . ($result['metadata']['is_vpn'] ? 'Yes' : 'No');
-cURL
-bash
-# Single IP
-curl -X GET "https://api.yourdomain.com/lookup?ip=8.8.8.8"
+| Code | Meaning             |
+| ---- | ------------------- |
+| 200  | Success             |
+| 400  | Invalid IP          |
+| 429  | Rate limit exceeded |
+| 500  | Server error        |
 
-# Batch lookup
-curl -X POST "https://api.yourdomain.com/lookup/batch" \
-  -H "Content-Type: application/json" \
-  -d '{"ips": ["8.8.8.8", "1.1.1.1"]}'
-📊 Use Cases & Applications
-1. Fraud Detection
-python
-# Detect VPN/proxy usage
-if ip_data['metadata']['is_vpn']:
-    flag_transaction_for_review()
-2. Geolocation Targeting
-python
-# Redirect users based on country
-country = ip_data['ip_details']['location']['country']
-if country == 'United States':
-    redirect_to('/us')
-elif country == 'United Kingdom':
-    redirect_to('/uk')
-3. Content Localization
-python
-# Serve localized content
-city = ip_data['ip_details']['location']['city']
-weather_api.get_weather(city)
-4. Security Analytics
-python
-# Log IP intelligence for audit
-log_entry = {
-    'ip': ip,
-    'isp': ip_data['ip_details']['isp'],
-    'is_vpn': ip_data['metadata']['is_vpn'],
-    'country': ip_data['ip_details']['location']['country']
-}
-🚦 Rate Limits & Performance
-Metric	Value
-Requests per minute	45 (single IP)
-Batch size	Up to 10 IPs
-Response time	<500ms average
-Uptime	99.9%
-Concurrent requests	Unlimited
-🔒 Privacy & Compliance
-✅ GDPR Compliant - No personal data stored
+---
 
-✅ CCPA Ready - No user tracking
+# ❓ FAQ — Free IP Geolocation API
 
-✅ No Logging - We don't store your lookups
+## What is a free IP geolocation API?
 
-✅ HTTPS Only - Encrypted in transit
+A free IP geolocation API converts an IP address into structured geographic data such as country, region, city, ISP, ASN, and coordinates without requiring authentication.
 
-🌍 Data Coverage
-Region	Coverage
-North America	99.9%
-Europe	99.9%
-Asia Pacific	98.5%
-Latin America	97.2%
-Africa	94.8%
-Middle East	96.3%
-📚 API Documentation
-Parameters
-Parameter	Type	Required	Description
-ip	string	Yes	IPv4 address to lookup
-Response Fields
-Field	Type	Description
-success	boolean	Request status
-ip_details.hostname	string	Reverse DNS lookup
-ip_details.asn	string	Autonomous System Number
-ip_details.isp	string	Internet Service Provider
-ip_details.services	array	Detected services (VPN/Proxy)
-ip_details.location	object	Geographic location
-metadata.is_vpn	boolean	VPN/proxy detection
-Error Codes
-Code	Description
-200	Success
-400	Invalid IP format
-429	Rate limit exceeded
-500	Server error
-🎯 SEO Keywords
-Target Keywords:
+---
 
-IP geolocation API
+## Does this IP lookup API require an API key?
 
-IP intelligence platform
+No. This API works instantly without signup or API credentials.
 
-VPN detection API
+---
 
-IP to location converter
+## Can this API detect VPN and proxy traffic?
 
-Free IP lookup API
+Yes. It includes infrastructure intelligence signals that identify VPN and proxy IP ranges.
 
-Reverse IP lookup
+---
 
-IP address intelligence
+## What information does the API return?
 
-Fraud detection API
+The API returns:
 
-Geolocation API free
+* country
+* region
+* city
+* coordinates
+* ISP
+* ASN
+* hostname
+* VPN detection metadata
 
-IP data enrichment
+---
 
-Long-tail keywords:
+## Is this API suitable for production use?
 
-Real-time IP geolocation API for developers
+This API is designed primarily for educational use, experimentation, and developer research workflows. Production users should evaluate availability and compliance requirements independently.
 
-Free VPN detection and IP analysis tool
+---
 
-Enterprise IP intelligence and threat detection
+## Can I deploy my own instance?
 
-IP to country/city/ISP mapping API
+Yes.
 
-Batch IP lookup for cybersecurity
+Deploy instantly:
 
-🤝 Open Source & Educational
-This project is 100% Open Source and intended for educational purposes only.
+https://vercel.com/new/clone?repository-url=https://github.com/yourusername/ip-lookup-api
 
-📚 Learn: Understand how IP geolocation works
+---
 
-🔬 Experiment: Test with your own IP addresses
+# ⚠️ Educational Use Notice
 
-🛠️ Build: Create your own IP intelligence tools
+This project aggregates publicly available IP intelligence data and is intended strictly for:
 
-📖 Study: Explore web scraping and API development
+* educational purposes
+* research experimentation
+* infrastructure learning
+* prototype security tooling
+* API development practice
 
-⚠️ Important Notice
-For Educational Use Only
+It should not be relied upon as a sole source of truth for compliance-critical production systems.
 
-This API aggregates publicly available data from whatismyipaddress.com. The data is provided "as is" for learning and research purposes.
+---
 
-Attribution & Credits
-Data Source: whatismyipaddress.com
+# 🔍 SEO Keywords Covered
 
-Built with: Python, Flask, curl_cffi, BeautifulSoup
+This repository targets:
 
-Hosted on: Vercel
+* free IP geolocation API
+* IP lookup API free
+* IP to location API free
+* VPN detection API free
+* IP intelligence API
+* reverse IP lookup API
+* batch IP lookup API
+* geolocation API without API key
 
-📞 Contact & Support
-For credit requests or content removal:
+---
 
-📧 Email: maxwellirungu64@gmail.com
+# 📄 License
 
-🐙 GitHub Issues: Open an issue
-
-💬 Discord: Join our community
-
-DMCA & Removal Requests
-If you believe your intellectual property rights have been violated or you want your data removed from this service, please contact us immediately with:
-
-Your contact information
-
-Identification of the material to be removed
-
-Proof of ownership or authorization
-
-We respond to all legitimate removal requests within 48 hours.
-
-📄 License
-text
-MIT License
-
-Copyright (c) 2026 IP Intelligence API
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-⭐ Star History
-https://api.star-history.com/svg?repos=yourusername/ip-lookup-api&type=Date
-
-🙏 Acknowledgments
-Thanks to whatismyipaddress.com for providing IP data
-
-Built with open-source technologies
-
-Community contributions welcome
-
-<div align="center">
-⭐ Star this repo if you find it useful! ⭐
-
-Report Bug · Request Feature · DMCA/Credit Request
-
-</div> ```
+MIT License © 2026
