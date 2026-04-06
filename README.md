@@ -11,7 +11,7 @@
 
 ```bash
 curl https://your-domain.vercel.app/api/lookup?ip=8.8.8.8
-```
+
 
 📊 Why Choose This API?
 Feature	Our API	Competitors
