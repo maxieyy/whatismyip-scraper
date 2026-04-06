@@ -11,6 +11,8 @@
 
 ```bash
 curl https://your-domain.vercel.app/api/lookup?ip=8.8.8.8
+```bash
+
 📊 Why Choose This API?
 Feature	Our API	Competitors
 Free Tier	✅ Unlimited	❌ Limited
@@ -32,7 +34,7 @@ Game Developers - Region locking, latency optimization
 
 Analytics Platforms - Enrich visitor data with IP intelligence
 
-✨ Premium Features (100% Free)
+# ✨ Premium Features (100% Free)
 🔍 Single IP Lookup
 http
 GET /api/lookup?ip={ip_address}
