@@ -2,3 +2,4 @@ curl_cffi==0.5.10
 beautifulsoup4==4.12.2
 flask==2.3.3
 lxml==4.9.3
+gunicorn==20.1.0
