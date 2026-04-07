@@ -60,6 +60,14 @@ def get_whatismyip_data(ip_address):
                 value = spans[1].text.strip()
                 raw_data[key] = value
         
+        # Extract hostname separately if needed
+        if 'Hostname' not in raw_data:
+            hostname_elem = soup.find('span', string='Hostname:')
+            if hostname_elem:
+                hostname_value = hostname_elem.find_next('span')
+                if hostname_value:
+                    raw_data['Hostname'] = hostname_value.text.strip()
+        
         # Extract user comments
         comments = []
         comment_spans = soup.find_all('span', style='font-size:16px;')
@@ -210,8 +218,5 @@ def home():
         'credit_removal': 'Contact maxieyy on GitHub for credit/removal requests'
     })
 
-# Vercel requires this
-app = app
-
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
