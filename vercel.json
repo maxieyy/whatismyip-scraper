@@ -1,11 +1,6 @@
 {
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.9",
-      "includeFiles": "**/*.py",
-      "excludeFiles": ""
-    }
-  },
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
   "routes": [
     {
       "src": "/api/lookup",
