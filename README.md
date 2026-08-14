@@ -4,6 +4,14 @@
 
 Convert any IP address into structured intelligence instantly — no authentication required.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/maxieyy/whatismyip-scraper)
+
+## 🚀 Deploy to Vercel
+
+Deploy your own instance with one click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/maxieyy/whatismyip-scraper)
+
 ```bash
 curl https://your-domain.vercel.app/api/lookup?ip=8.8.8.8
 ```
@@ -184,14 +192,14 @@ This API:
 # 🛠 Local Development
 
 ```bash
-git clone https://github.com/yourusername/ip-lookup-api.git
-cd ip-lookup-api
+git clone https://github.com/maxieyy/whatismyip-scraper.git
+cd whatismyip-scraper
 
 python -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt
-python api/lookup.py
+python api/index.py
 ```
 
 ---
@@ -258,11 +266,9 @@ This API is designed primarily for educational use, experimentation, and develop
 
 ## Can I deploy my own instance?
 
-Yes.
+Yes. Click the button below to deploy directly to Vercel:
 
-Deploy instantly:
-
-https://vercel.com/new/clone?repository-url=https://github.com/yourusername/ip-lookup-api
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/maxieyy/whatismyip-scraper)
 
 ---
 
